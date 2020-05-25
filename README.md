@@ -1,4 +1,5 @@
-# LROC_NAC_stereo
+# LROC_NAC_stereo of Marius Hills skylight 
+
 This is to set up a workflow for generating decent quality LROC NAC stereo DEMs
 ```
 wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219322049LE.IMG
@@ -78,5 +79,11 @@ if we have only python 2 on our machine we can skip this step
 
 **Shape from Shading**
 
+Shape from shading relies intensively on ram but is basically run as single threaded process. With this wrapper we can split the input DEM in tiles (with a certain pixel overlap) and parallelize shape from shading for each tile. Eventually they will be composited into the final result. This saves time and resources.
+
+On a core i7 quad core machine with 32 Gb of ram a 2000x3000 pixel image will take about 37 hours
+
+```
+parallel_sfs -i run_full2/run-trans_reference-DEM.tif M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub -o sfs_full_ref2/run --tile-size 300 --padding 100 --smoothness-weight 0.4 --initial-dem-constraint-weight 0.0001 --reflectance-type 1 --float-exposure --float-cameras --use-approx-camera-models --max-iterations 10 --use-approx-camera-models --use-rpc-approximation --crop-input-images --suppress-output --bundle-adjust-prefix run_ba/run
 
 
