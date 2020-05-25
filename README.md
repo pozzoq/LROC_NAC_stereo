@@ -51,4 +51,14 @@ We now interpolate the DEM as a first initial guess for shape from shading
 point2dem -r moon run_full2/run-PC.tif --t_srs "+proj=eqc +lat_0=0 +lon_0=0 +a=1737400 +b=1737400 +units=m +no_defs" --nodata -32767 --dem-hole-fill-len 100 --orthoimage-hole-fill-len 100 --remove-outliers-params 75.0 3.0 --orthoimage run_full2/run-L.tif -o run_full2/ortho-L
 ```
 
+**Now the funny part begins**
+Shape from shading is very computationally heavy procedure and we need to set it up properly.
+Parallelized sfs is the fastest way. Before we need to install gnu parallel
+On linux machines: 
+
+```
+sudo apt-get install parallel
+```
+
+First we need to ensure that if we are running python 3 on our machine we modify 
 
