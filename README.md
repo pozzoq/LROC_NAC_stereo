@@ -1,12 +1,29 @@
 # LROC_NAC_stereo
 This is to set up a workflow for generating decent quality LROC NAC stereo DEMs
+```
+wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219322049LE.IMG
+wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219322049RE.IMG
+wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219329084RE.IMG
+wgethttp://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219329084LE.IMG
+```
 
+we use the ASP python wrapper to do the job of processing and mosaicking the NAC pieces
+
+```
+lronac2mosaic.py M1219322049LE.IMG M1219322049LE.IMG 
+lronac2mosaic.py M1219329084RE.IMG M1219329084LE.IMG
+```
+
+Then we take the outputs (the final stereo pair) and use the second wrapper to create level2 which seems more reliable according to ASP manual
+
+```
+M1219322049LE.lronaccal.lronacecho.noproj.mosaic.norm.cub M1219329084LE.lronaccal.lronacecho.noproj.mosaic.norm.cub
+```
+
+We then crop them in order to save time
 
 ```
 crop from=M1219322049LE.map.cub to=M1219322049LE.map.crop.cub sample=2200 nsamples=5000 line=30000 nlines=5000
-```
-
-```
 crop from=M1219329084LE.map.cub to=M1219329084LE.map.crop.cub sample=2200 nsamples=5000 line=30000 nlines=5000
 ```
 
@@ -24,7 +41,9 @@ PC_Align needs to align the first obtained point cloud to a reference DEM. We ch
 ```
 gdal_translate -projwin -1733458.7644640056 438880.4473252905 -1709916.8672144127 419142.4950550104 -of GTiff DEM_Kaguya.tif LOLA+Kaguya_crop.tif
 ```
-
+```
+pc_align --max-displacement 200 run_adjust/run-PC.tif LOLA+Kaguya_crop.tif --highest-accuracy --save-transformed-source-points -o spheroid_DEM
+```
 
 We now interpolate the DEM as a first initial guess for shape from shading
 ```
