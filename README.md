@@ -4,7 +4,7 @@ This is to set up a workflow for generating decent quality LROC NAC stereo DEMs
 wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219322049LE.IMG
 wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219322049RE.IMG
 wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219329084RE.IMG
-wgethttp://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219329084LE.IMG
+wget http://lroc.sese.asu.edu/data/LRO-L-LROC-2-EDR-V1.0/LROLRC_0027/DATA/ESM2/2016152/NAC/M1219329084LE.IMG
 ```
 
 we use the ASP python wrapper to do the job of processing and mosaicking the NAC pieces
