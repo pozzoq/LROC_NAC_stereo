@@ -52,6 +52,7 @@ point2dem -r moon run_full2/run-PC.tif --t_srs "+proj=eqc +lat_0=0 +lon_0=0 +a=1
 ```
 
 **Now the funny part begins**
+
 Shape from shading is very computationally heavy procedure and we need to set it up properly.
 Parallelized sfs is the fastest way. Before we need to install gnu parallel
 On linux machines: 
