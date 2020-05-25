@@ -33,7 +33,7 @@ bundle_adjust M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub --min-matche
 ```
 Then we run stereo
 ```
-stereo M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub run_adjust/run --subpixel-mode 2 --bundle-adjust-prefix run_ba/run —threads 16
+stereo M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub run_adjust/run --subpixel-mode 2 --bundle-adjust-prefix run_ba/run -—threads 16
 ```
 
 
