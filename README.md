@@ -17,7 +17,7 @@ lronac2mosaic.py M1219329084RE.IMG M1219329084LE.IMG
 Then we take the outputs (the final stereo pair) and use the second wrapper to create level2 which seems more reliable according to ASP manual
 
 ```
-M1219322049LE.lronaccal.lronacecho.noproj.mosaic.norm.cub M1219329084LE.lronaccal.lronacecho.noproj.mosaic.norm.cub
+cam2map4stereo.py M1219322049LE.lronaccal.lronacecho.noproj.mosaic.norm.cub M1219329084LE.lronaccal.lronacecho.noproj.mosaic.norm.cub
 ```
 
 We then crop them in order to save time
