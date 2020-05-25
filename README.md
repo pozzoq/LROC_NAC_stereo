@@ -27,10 +27,11 @@ crop from=M1219322049LE.map.cub to=M1219322049LE.map.crop.cub sample=2200 nsampl
 crop from=M1219329084LE.map.cub to=M1219329084LE.map.crop.cub sample=2200 nsamples=5000 line=30000 nlines=5000
 ```
 
+And we perform bundle adjustmend on the cropped images which is faster
 ```
 bundle_adjust M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub --min-matches 1 -o run_ba/run
 ```
-und:
+Then we run stereo
 ```
 stereo M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub run_adjust/run --subpixel-mode 2 --bundle-adjust-prefix run_ba/run —threads 16
 ```
