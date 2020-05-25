@@ -55,13 +55,14 @@ point2dem -r moon run_full2/run-PC.tif --t_srs "+proj=eqc +lat_0=0 +lon_0=0 +a=1
 
 Shape from shading is very computationally heavy procedure and we need to set it up properly.
 Parallelized sfs is the fastest way. Before we need to install gnu parallel
+
 On linux machines: 
 
 ```
 sudo apt-get install parallel
 ```
 
-First we need to ensure that if we are running python 3 on our machine we modify the parallel_sfs.py program located into the ASP installation folder at StereoPipeline-2.6.2-2019-06-17-x86_64-OSX/libexec/parallel_sfs
+Before proceeding we need to ensure that if we are running python 3 on our machine we modify the parallel_sfs.py program located into the ASP installation folder at StereoPipeline-2.6.2-2019-06-17-x86_64-OSX/libexec/parallel_sfs
 
 we need to change in line 347 from
 ```
@@ -72,5 +73,10 @@ into
 ```
 argumentFile     = open(argumentFilePath, 'w')
 ```
+if we have only python 2 on our machine we can skip this step
+
+
+**Shape from Shading**
+
 
 
