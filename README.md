@@ -82,8 +82,16 @@ if we have only python 2 on our machine we can skip this step
 Shape from shading relies intensively on ram but is basically run as single threaded process. With this wrapper we can split the input DEM in tiles (with a certain pixel overlap) and parallelize shape from shading for each tile. Eventually they will be composited into the final result. This saves time and resources.
 
 On a core i7 quad core machine with 32 Gb of ram a 2000x3000 pixel image will take about 37 hours
+We want to use both the stereo images since the illuminations conditions are similar to get a better result.
+
+The most effective and efficient way is to set up tiles of 300x300 pixels with 100 pixels overlap to avoid artifacts (the so-called padding)
+Smoothness weight is set to 0.7 and should avoid major artifacts and reduce the "streaks" typical of this technique.
+Maximum iterations is set to 10.
 
 ```
-parallel_sfs -i run_full2/run-trans_reference-DEM.tif M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub -o sfs_full_ref2/run --tile-size 300 --padding 100 --smoothness-weight 0.4 --initial-dem-constraint-weight 0.0001 --reflectance-type 1 --float-exposure --float-cameras --use-approx-camera-models --max-iterations 10 --use-approx-camera-models --use-rpc-approximation --crop-input-images --suppress-output --bundle-adjust-prefix run_ba/run
+parallel_sfs -i run_adjust/spheroid-dem-trans-source-DEM.tif M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub -o sfs_full_v_1/run --tile-size 300 --padding 100 --smoothness-weight 0.5 --initial-dem-constraint-weight 0.0001 --reflectance-type 1 --float-exposure --float-cameras --use-approx-camera-models --max-iterations 10 --use-approx-camera-models --use-rpc-approximation --crop-input-images --suppress-output --bundle-adjust-prefix run_ba/run
+```
+
+
 
 
