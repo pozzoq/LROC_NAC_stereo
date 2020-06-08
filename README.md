@@ -63,6 +63,13 @@ On linux machines:
 sudo apt-get install parallel
 ```
 
+On Mac OS Homebrew has to be installed:
+
+```
+brew install parallel
+```
+
+
 Before proceeding we need to ensure that if we are running python 3 on our machine we modify the parallel_sfs.py program located into the ASP installation folder at StereoPipeline-2.6.2-2019-06-17-x86_64-OSX/libexec/parallel_sfs
 
 we need to change in line 347 from
