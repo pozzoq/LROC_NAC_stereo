@@ -102,6 +102,18 @@ On a core i7 quad core machine with 32 Gb of ram a 2000x3000 pixel image will ta
 parallel_sfs -i run_adjust/spheroid-dem-trans-source-DEM.tif M1219322049LE.map.crop.cub M1219329084LE.map.crop.cub -o sfs_full_v_1/run --tile-size 300 --padding 100 --smoothness-weight 0.5 --initial-dem-constraint-weight 0.0001 --reflectance-type 1 --float-exposure --float-cameras --use-approx-camera-models --max-iterations 10 --use-approx-camera-models --use-rpc-approximation --crop-input-images --suppress-output --bundle-adjust-prefix run_ba/run
 ```
 
+In a region with particular illuminations conditions such as completerly dark areas, shape from shading does not provide a solution. A shadow threshold must be set, using the "stereo_gui" mode of ASP. Here the two stere images are loaded and by selecting "threshold -> shadow threshold" and clickong multiple times on the two shaded images the thredhols values will appear in a dedicated window. T
+
+```
+stereo_gui M1219322049LE.map.crop_pit2.cub M1219329084LE.map.crop_pit2.cub run/out
+
+```
 
 
+Newer versions of ASP (2.7 or higher) have a slightly modified code. This is an example of what has been performed successfully on Marius Hills with shadow threshold enabled "--shadow-threshold" and the two values (one per image) and also model shadows taken into account with the "--model-shadows".
+After 1 iteration of shape from shading the DEM is perfectly adherent to the original one.
 
+```
+parallel_sfs -i run-DEM.tif -n 1 -o prova_oct_2020_v10/run M1219322049LE.map.crop_pit2.cub M1219329084LE.map.crop_pit2.cub  --tile-size 100 --padding 50 --reflectance-type 1 --smoothness-weight 0.03 --initial-dem-constraint-weight 0.0001 --use-approx-camera-models --crop-input-images --suppress-output --bundle-adjust-prefix run_ba_pit2/run --shadow-thresholds "0.00205592322163283825 0.00235896115191280842" --model-shadows
+
+```
