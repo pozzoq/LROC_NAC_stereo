@@ -117,3 +117,4 @@ After 1 iteration of shape from shading the DEM is perfectly adherent to the ori
 parallel_sfs -i run-DEM.tif -n 1 -o prova_oct_2020_v10/run M1219322049LE.map.crop_pit2.cub M1219329084LE.map.crop_pit2.cub  --tile-size 100 --padding 50 --reflectance-type 1 --smoothness-weight 0.03 --initial-dem-constraint-weight 0.0001 --use-approx-camera-models --crop-input-images --suppress-output --bundle-adjust-prefix run_ba_pit2/run --shadow-thresholds "0.00205592322163283825 0.00235896115191280842" --model-shadows
 
 ```
+If an error comes up with the input DEM it is most likely that sfs detects holes or "nodata" values in the DEM. Either one has to use dem_mosaic from ASP fo provide a background DEM (e.g. the pc_align reference one) and blend them or go to QGIS and use the fill holes "Fill No data Cells" to solve the issue
